@@ -59,8 +59,11 @@ import subprocess
 
 if __name__ == '__main__':
     start_time = time.time()
-    subprocess.run(['python', '/home/junyan/Documents/ByteTrack/trained_model_bytetrack.py'], check=True)
-
+    command = [
+    "python3", "/home/junyan/Documents/TrackLinkGSI/ByteTrack/trained_model_bytetrack.py",
+    "video-c", "pretrained/bytetrack_x_mot17.pth.tar", "--fp16", "--fuse", "--save_result"
+    ]
+    subprocess.run(command, check=True)
     if opt.AFLink:
         model = PostLinker()
         model.load_state_dict(torch.load(opt.path_AFLink))
